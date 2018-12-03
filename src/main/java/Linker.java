@@ -1,7 +1,5 @@
 import java.rmi.ServerError;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Linker {
     String user;
@@ -13,7 +11,7 @@ public class Linker {
         return con;
     }
 
-    public Linker(String user, String url, String password)
+    public Linker(String url, String user, String password)
     {
         this.user = user;
         this.url = url;
@@ -31,7 +29,7 @@ public class Linker {
         catch(ClassNotFoundException e){
             System.err.println("Driver not found");e.printStackTrace();}
         try {
-            con = DriverManager.getConnection(url, user,password);
+            con = DriverManager.getConnection(url, user, password);
         }
         catch (SQLException e){
             System.err.println("connection failed"); e.printStackTrace();

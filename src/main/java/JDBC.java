@@ -6,20 +6,14 @@ public class JDBC  {
         String name = "test_user";
         String password = "qwerty";
         String url = "jdbc:postgresql://localhost:5432/test_database";
-        Connection conn = null;
+        Linker l = new Linker(url,name,password);
         Statement st  =null;
         ResultSet rs = null;
         String query = " ";
             try {
-                Class.forName("org.postgresql.Driver");
-            } catch (ClassNotFoundException e){
-                System.err.println("driver not found");
-                e.printStackTrace();
-            }
-            try {
-                conn = DriverManager.getConnection(url,name,password);
+                l.connect();
                 System.out.println("Connection sucsess");
-                st = conn.createStatement();
+                st = l.getConnection().createStatement();
                 String SQL = "CREATE TABLE if not exists Clients " +
                         "(id INTEGER not NULL, " +
                         " name VARCHAR(50), " +
@@ -46,7 +40,7 @@ public class JDBC  {
 
             }
             finally {
-                try{conn.close();} catch(SQLException se){
+                try{l.getConnection().close();} catch(SQLException se){
                     System.out.println("can't close connection");se.printStackTrace();}
                     try{st.close();} catch (SQLException se1){
                         System.out.println("Can't close statement");se1.printStackTrace();
