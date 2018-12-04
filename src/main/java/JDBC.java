@@ -22,17 +22,11 @@ public class JDBC  {
                         " PRIMARY KEY (id))";
                 //query = "insert into Clients (id,NAME, City ) values (1 ,'Ciri Dun', 'Voronezh');";
                 //st.executeUpdate(SQL);
-                helper.AddClient(3, "Bor Sil", "LA");
+                helper.DeleteClient(3);
                 query ="Select * from Clients ; ";
                 //rs = st.executeQuery(query);
 
-                /*while(rs.next())
-                {
-                    int id = rs.getInt(1);
-                    String first_name = rs.getString(2);
-                    String city = rs.getString(3);
-                    System.out.println("result: "+ id +  first_name + city );
-                }*/
+
 
             }
 
