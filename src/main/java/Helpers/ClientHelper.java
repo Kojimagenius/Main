@@ -1,3 +1,6 @@
+package Helpers;
+
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -24,10 +27,10 @@ public  class  ClientHelper {
         String query = null;
 
         if(option instanceof Integer)
-             query = "Select * from clients where id = '" + option + "';";
+             query = "Select * from Users where id = '" + option + "';";
         else if(option instanceof String && ((String) option).split(" ").length > 1)
-             query = "Select * from clients where name = '" + option + "';";
-        else if(option instanceof String) query = "Select * from clients where city = '" + option + "' ; ";
+             query = "Select * from Users where name = '" + option + "';";
+        else if(option instanceof String) query = "Select * from Users where city = '" + option + "' ; ";
         try {
              rs = st.executeQuery(query);
         }catch(SQLException e){
@@ -53,13 +56,19 @@ public  class  ClientHelper {
     public  <T> void UpdateClient(T ref, String columnName, T target) {
         try{st = link.getConnection().createStatement();}
         catch(SQLException e){System.err.println("Statement failed"); e.printStackTrace();
-        } //todo
-        String query = "Update clients set " + columnName + "where id = " + ref ;
+        }
+        String query = "Update Users set " + columnName + " = " + target + "where id = " + ref ;
+        try {
+            st.executeUpdate(query);
+
+        }catch(SQLException e){
+            System.err.println("Statement fail"); e.printStackTrace();
+        }
     }
 
 
     public void DeleteClient(int option){
-            String query = "Delete from clients where id = " + option + " ;" ;
+            String query = "Delete from Users where id = " + option + " ;" ;
         try {
             st.executeUpdate(query);
         }catch (SQLException e){
@@ -69,7 +78,7 @@ public  class  ClientHelper {
     }
 
     public void AddClient(int id, String Name, String City) {
-        try {String query = "INSERT INTO CLIENTS (id,Name,City) VALUES ("+
+        try {String query = "INSERT INTO Users (id,Name,City) VALUES ("+
                 id +", '"+ Name+ "' , '" + City + "');"; st.executeUpdate(query);}
                 catch (SQLException e)
                 {
