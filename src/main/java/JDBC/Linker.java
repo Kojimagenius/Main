@@ -1,6 +1,5 @@
-package Helpers;
+package JDBC;
 
-import java.rmi.ServerError;
 import java.sql.*;
 
 public class Linker {

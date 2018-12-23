@@ -1,12 +1,10 @@
-import Helpers.ClientHelper;
-import Helpers.Linker;
-import config.SprConf;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import JDBC.ClientHelper;
+import JDBC.Linker;
 
 import java.sql.*;
 
 
-public class JDBC {
+public class Main {
     public static void main(String[] args) {
         String name = "test_user";
         String password = "qwerty";
@@ -38,7 +36,6 @@ public class JDBC {
         System.out.println("Connection sucsess");
         ClientHelper helper = new ClientHelper(l); // Объект, позволяющий взаимподействовать с таблицей Clients
         helper.UpdateClient(1,"id", 6 );
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SprConf.class);
         //helper.PrintResult(rs);
     }
 }
