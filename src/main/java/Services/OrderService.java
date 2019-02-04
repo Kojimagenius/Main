@@ -6,9 +6,9 @@ import model.Order;
 import java.util.List;
 
 public interface OrderService {
-    void addOrder(Order order);
-    void deleteOrder(long id);
-    Order getById(long id);
+    Order addOrder(Order order);
+    void delete(long id);
+    Order getById(long id);//кастомный метод для spr.data(См. OrderDAO)
     Order editOrder(Order ord);
     List<Order>getAllOrders();
 }
