@@ -1,41 +1,16 @@
 import JDBC.ClientHelper;
 import JDBC.Linker;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.sql.*;
 
 
 public class Main {
     public static void main(String[] args) {
-        String name = "test_user";
-        String password = "qwerty";
-        String url = "jdbc:postgresql://localhost:5432/test_database";
-        // объект, соединяющий БД с джава
-        Linker l = new Linker(url, name, password);
-        l.connect();
-        String sql ="CREATE TABLE Orders(id INTEGER NOT NULL, City VARCHAR(50), Entity VARCHAR(100), PRIMARY KEY(id)) ";
-        try{
-            Statement st = l.getConnection().createStatement();
-            st.executeUpdate(sql);
 
-        }catch (SQLException  e){
-            System.err.println("failed to create table orders");
-            e.printStackTrace();
+        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
+        ctx.scan("Config");
 
-        }catch (NullPointerException e1)
-        {
-            e1.printStackTrace();
-        }
-        try{sql = "CREATE TABLE Orders_Users(user_id INTEGER NOT NULL, order_id INTEGER NOT NULL, PRIMARY KEY(user_id), FOREIGN KEY(user_id) REFERENCES users(id), FOREIGN key(order_id) orders(id))";
-            Statement st = l.getConnection().createStatement();
-            st.executeUpdate(sql);   }catch(SQLException e){
-            System.err.println("Failed to create table users_orders");
-            e.printStackTrace();
-        }
-        ResultSet rs = null;
-
-        System.out.println("Connection sucsess");
-        ClientHelper helper = new ClientHelper(l); // Объект, позволяющий взаимподействовать с таблицей Clients
-        helper.UpdateClient(1,"id", 6 );
         //helper.PrintResult(rs);
     }
 }

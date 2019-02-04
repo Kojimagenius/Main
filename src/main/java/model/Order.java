@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Order {
     @Id
     @GeneratedValue(generator = "increment")
-    @Column(name = "id", length = 6, nullable = false)
+    @Column(name = "id")
     private Long id;
     @Column(name = "city")
     private String StartPoint;
