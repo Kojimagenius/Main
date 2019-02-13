@@ -21,6 +21,10 @@ public  class  ClientHelper {
         }
     }
 
+    public void gentrateID(){ // функция, которая будет обеспечивать генерацию новых айди
+        //и их вставку
+
+    }
 
     public <T> ResultSet  SelectClient(T option) {
         ResultSet rs = null;
